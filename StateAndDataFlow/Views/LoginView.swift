@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject private var userManager: UserManager
-
+    private var storageManager = StorageManager.shared
     
     var body: some View {
         VStack {
@@ -30,13 +30,13 @@ struct LoginView: View {
     }
     
     private func login() {
-        if !userManager.validName{
-            userManager.user.isLoggedIn.toggle()
-        }
+        userManager.user.isLoggedIn = true
+        storageManager.saveUser(userManager.user)
     }
 }
 
 #Preview {
     LoginView()
         .environmentObject(UserManager())
+       
 }

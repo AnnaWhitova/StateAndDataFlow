@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+final class UserManager: ObservableObject {
+    @Published var user = User()
+    
+    var validName: Bool {
+        user.name.count >= 3
+    }
+    
+}

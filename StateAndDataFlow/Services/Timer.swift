@@ -5,8 +5,8 @@
 //  Created by Анна Белова on 02.09.2024.
 //
 
-import Foundation
 import Observation
+import Foundation
 
 @Observable
 final class TimerCount{

@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject private var contentViewVM: ContentViewViewModel
+    private var timer = TimerCount()
     @EnvironmentObject private var userManager: UserManager
+    private var storageManager = StorageManager.shared
     
     var body: some View {
         VStack {
             Text("Hi, \(userManager.user.name)")
                 .font(.title)
                 .padding(.top, 100)
-            Text(contentViewVM.counter.formatted())
+            Text(timer.counter.formatted())
                 .font(.largeTitle)
                 .padding(.top, 100)
                 
             Spacer()
             
-            ButtonView(action: contentViewVM.startTimer, text: "Start", color: .red)
+            ButtonView(action: timer.startTimer, text: "Start", color: .red)
             
             Spacer()
             
             ButtonView(action: {
-                userManager.user.isLoggedIn = false
+                storageManager.logOut(userManager)
             }, text: "Log out", color: .blue)
             
         }
@@ -37,7 +38,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(ContentViewViewModel())
         .environmentObject(UserManager())
 }
 
