@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class User: Codable {
+struct User: Codable {
     var name = ""
     var isLoggedIn = false
 }
